@@ -41,3 +41,7 @@ commit
 save
 exit
 ```
+
+## notes and disclaimer
+
+I did not tested (yet) advanced services like firewall, routing or IPSec. YMMV and you might have to adjust the docker-compose or adjust VyOS code itself for those weird usages.

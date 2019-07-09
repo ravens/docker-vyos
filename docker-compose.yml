@@ -1,0 +1,23 @@
+version: '3'
+
+networks:
+  vyos_mgmt:
+
+services:
+  vyos:
+    image: vyos
+    privileged: true
+    container_name: vyos
+    cap_add:
+      - NET_ADMIN
+    devices:
+      - /dev/net/tun
+    volumes:
+      - "/lib/modules:/lib/modules:ro" 
+      - "./config.init:/config.init"
+      - "./vyos-config:/usr/libexec/vyos/init/vyos-config"
+      - "./config:/opt/vyatta/etc/config"
+    entrypoint:
+      - /sbin/init
+    networks:
+      vyos_mgmt:

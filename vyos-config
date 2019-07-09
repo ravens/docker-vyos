@@ -1,0 +1,10 @@
+#!/bin/bash
+
+source /opt/vyatta/etc/functions/script-template
+
+mkdir -p /var/log/vyatta/
+touch /var/log/vyatta/vyatta-config-loader.log
+chown ugo+rwX /var/log/vyatta/vyatta-config-loader.log
+
+sg vyattacfg -c  "/opt/vyatta/sbin/vyatta-boot-config-loader /config.init" 
+

@@ -3,7 +3,7 @@ VyOS inside a container for validing config files, playing with the software etc
 
 ## generating a local docker image for vyos
 
-From original https://hub.docker.com/r/2stacks/vyos instructions :
+Per the original https://hub.docker.com/r/2stacks/vyos instructions:
 ```
 sudo apt-get install -y squashfs-tools python-bs4 
 curl --output vyos-latest.iso `python vyos-latest.py`

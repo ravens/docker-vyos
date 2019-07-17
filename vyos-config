@@ -1,5 +1,6 @@
 #!/bin/bash
 source /opt/vyatta/etc/functions/script-template
+sleep 5
 session_env=$(/bin/cli-shell-api getSessionEnv $PPID)
 eval $session_env 
 /bin/cli-shell-api setupSession

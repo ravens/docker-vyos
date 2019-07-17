@@ -1,0 +1,70 @@
+firewall {
+    all-ping enable
+    broadcast-ping disable
+    config-trap disable
+    ipv6-receive-redirects disable
+    ipv6-src-route disable
+    ip-src-route disable
+    log-martians enable
+    name WAN_LOCAL {
+        default-action drop
+        enable-default-log
+    }
+    receive-redirects disable
+    send-redirects enable
+    source-validation disable
+    syn-cookies enable
+    twa-hazards-protection disable
+}
+interfaces {
+    ethernet eth0 {
+        duplex auto
+        smp-affinity auto
+        speed auto
+    }
+    loopback lo
+}
+service {
+    dns {
+        forwarding {
+            listen-address 0.0.0.0
+            system
+        }
+    }
+    ssh {
+    }
+}
+system {
+    config-management {
+        commit-revisions 100
+    }
+    host-name vyos
+    login {
+        user vyos {
+            authentication {
+                plaintext-password "vyos"
+            }
+            level admin
+        }
+    }
+    name-server 8.8.8.8
+    ntp {
+        server 0.pool.ntp.org
+        server 1.pool.ntp.org
+        server 2.pool.ntp.org
+    }
+    syslog {
+        global {
+            facility all {
+                level info
+            }
+            facility protocols {
+                level debug
+            }
+        }
+    }
+    time-zone UTC
+}
+/* Warning: Do not remove the following line. */
+/* === vyatta-config-version: "broadcast-relay@1:cluster@1:config-management@1:conntrack@1:conntrack-sync@1:dhcp-relay@2:dhcp-server@5:firewall@5:ipsec@5:l2tp@1:mdns@1:nat@4:ntp@1:pptp@1:qos@1:quagga@3:ssh@1:system@9:vrrp@2:vyos-accel-ppp@1:wanloadbalance@3:webgui@1:webproxy@1:zone-policy@1" === */
+/* Release version: 1.2.0 */

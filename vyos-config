@@ -1,10 +1,9 @@
 #!/bin/bash
-mkdir -p /var/log/vyatta/
-touch /var/log/vyatta/vyatta-config-loader.log
-touch /var/log/vyatta/vyatta-commit.log
-chown ugo+rwX /var/log/vyatta/
-chgrp -R vyattacfg /var/log/vyatta/
-
 source /opt/vyatta/etc/functions/script-template
-sg vyattacfg -c  "/opt/vyatta/sbin/vyatta-boot-config-loader /config.init" 
-
+session_env=$(/bin/cli-shell-api getSessionEnv $PPID)
+eval $session_env 
+/bin/cli-shell-api setupSession
+/bin/cli-shell-api loadFile /config.init
+/opt/vyatta/sbin/my_commit
+${vyatta_sbindir}/vyatta-save-config.pl
+/bin/cli-shell-api teardownSession

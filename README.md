@@ -3,16 +3,30 @@ VyOS inside a container for validing config files, playing with the software etc
 
 ## generating a local docker image for vyos
 
+### rolling release
 Per the original https://hub.docker.com/r/2stacks/vyos instructions:
 ```
 sudo apt-get install -y squashfs-tools python-bs4 
-curl --output vyos-latest.iso `python vyos-latest.py`
+curl --output vyos-latest.iso `python vyos-latest.py` # will fetch a rolling release for you 
 mkdir unsquashfs
 mkdir rootfs
 sudo mount -o loop vyos-latest.iso rootfs
 sudo unsquashfs -f -d unsquashfs/ rootfs/live/filesystem.squashfs
 sudo tar -C unsquashfs -c . | docker import - vyos
 sudo umount rootfs
+```
+
+### using VMWare Marketplace image
+
+Using your vmware account, fetch the VyOS (appliance OVA file)[https://marketplace.vmware.com/vsx/solutions/vyos-1-2-lts-1-2-0]
+```
+sudo apt-get install -y squashfs-tools p7zip-full
+mkdir unsquashfs
+mkdir rootfs
+tar xvf  vyos-1.2.1.ova
+7z x -ooutput_ova  vyos-1.2.1-disk1.vmdk
+sudo unsquashfs -f -d unsquashfs/ output_ova/boot/1.2.1/1.2.1.squashfs
+sudo tar -C unsquashfs -c . | docker import - vyos
 ```
 
 ## starting a VyOS docker instance

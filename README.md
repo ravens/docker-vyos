@@ -18,7 +18,7 @@ sudo umount rootfs
 
 ### using VMWare Marketplace image
 
-Using your vmware account, fetch the VyOS (appliance OVA file)[https://marketplace.vmware.com/vsx/solutions/vyos-1-2-lts-1-2-0]
+Using your vmware account, fetch the VyOS [appliance OVA file](https://marketplace.vmware.com/vsx/solutions/vyos-1-2-lts-1-2-0)
 ```
 sudo apt-get install -y squashfs-tools p7zip-full
 mkdir unsquashfs

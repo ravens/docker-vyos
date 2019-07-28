@@ -33,9 +33,10 @@ sudo tar -C unsquashfs -c . | docker import - vyos
 
 I am providing a docker-compose.yml and some initial config file (config.init), opiniated with DNS and SSH. The config directory will receive the configuration of VyOS as stored in the system.
 
-How does this works ? This docker-compose will use the init as entrypoint of the squashfs image from VyOS to initialize most of VyOS components as the normal iso. The trick is to change vyos-config init script by a special one that loads the config.init mounted by docker.
+How does this works ? This docker-compose will use the init as entrypoint of the squashfs image from VyOS to initialize most of VyOS components as the normal iso. The trick is to change vyos-config init script by a simple one that loads the config.init mounted by docker.
 
 ```
+docker-compose build
 docker-compose up -d
 ```
 
@@ -58,4 +59,4 @@ exit
 
 ## notes and disclaimer
 
-I did not tested (yet) advanced services like firewall, routing or IPSec. YMMV and you might have to adjust the docker-compose or adjust VyOS code itself for those weird usages.
+I did not tested (yet) advanced services like firewall, routing or IPSec. YMMV and you might have to adjust the docker-compose or adjust VyOS code itself for those usage in container mode.

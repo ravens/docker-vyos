@@ -5,7 +5,7 @@ networks:
 
 services:
   vyos:
-    image: vyos
+    build: ./
     privileged: true
     container_name: vyos
     cap_add:
@@ -15,7 +15,6 @@ services:
     volumes:
       - "/lib/modules:/lib/modules:ro" 
       - "./config.init:/config.init"
-      - "./vyos-config:/usr/libexec/vyos/init/vyos-config"
       - "./config:/opt/vyatta/etc/config"
     entrypoint:
       - /sbin/init

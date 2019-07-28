@@ -1,21 +1,3 @@
-firewall {
-    all-ping enable
-    broadcast-ping disable
-    config-trap disable
-    ipv6-receive-redirects disable
-    ipv6-src-route disable
-    ip-src-route disable
-    log-martians enable
-    name WAN_LOCAL {
-        default-action drop
-        enable-default-log
-    }
-    receive-redirects disable
-    send-redirects enable
-    source-validation disable
-    syn-cookies enable
-    twa-hazards-protection disable
-}
 interfaces {
     ethernet eth0 {
         duplex auto
